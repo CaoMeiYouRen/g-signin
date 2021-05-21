@@ -1,7 +1,6 @@
+简体中文 | [English](./README.en-US.md)
 <div align="center"> 
-<h1 align="center">
-Genshin Impact Helper
-</h1>
+<h1 align="center">Genshin Impact Helper</h1>
 
 ![Genshin Impact Helper](https://i.loli.net/2020/11/18/3zogEraBFtOm5nI.jpg)
 [![GitHub stars](https://img.shields.io/github/stars/y1ndan/genshin-impact-helper?style=flat-square)](https://github.com/y1ndan/genshin-impact-helper/stargazers)
@@ -12,6 +11,8 @@ Genshin Impact Helper
 ![Github workflow status](https://img.shields.io/github/workflow/status/y1ndan/genshin-impact-helper/Genshin%20Impact%20Helper?label=status&style=flat-square)
 
 </div>
+
+## 已支持国际版签到 HoYoLAB Community daily check-in is supported 
 
 ## 💭前言
 
@@ -258,6 +259,7 @@ if (ask == true) {
 |   参数名称         |   是否必填   |   默认值           |   说明                                                          |
 |---                |---          |---                 |---                                                              |
 |   COOKIE          | ✅         |                    |   米游社的Cookie                                                 |
+|   OS_COOKIE          | ❌         |                    |   米游社国际版的Cookie                                                 |
 |   WB_COOKIE       | ❌         |                    |   新浪微博的Cookie                                                 |
 |   KA_COOKIE       | ❌         |                    |   新浪新手卡中心的Cookie                                                 |
 |   SCKEY           | ❌         |                    |   Server酱的SCKEY                                                |
