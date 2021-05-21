@@ -19,6 +19,7 @@ from notify import Notify
 def version():
     return 'v1.6.11'
 
+
 def hexdigest(text):
     md5 = hashlib.md5()
     md5.update(text.encode())
@@ -63,7 +64,7 @@ class Roles(Base):
         except Exception as e:
             raise Exception(e)
         if response.get(
-            'retcode', 1) != 0 or response.get('data', None) is None:
+                'retcode', 1) != 0 or response.get('data', None) is None:
             raise Exception(message)
 
         log.info('账号信息获取完毕')
@@ -89,7 +90,7 @@ class Sign(Base):
     def get_header(self):
         header = super(Sign, self).get_header()
         header.update({
-            'x-rpc-device_id':str(uuid.uuid3(
+            'x-rpc-device_id': str(uuid.uuid3(
                 uuid.NAMESPACE_URL, self._cookie)).replace('-', '').upper(),
             # 1:  ios
             # 2:  android
@@ -115,7 +116,7 @@ class Sign(Base):
         # cn_qd01:  世界树
         self._region_list = [(i.get('region', 'NA')) for i in role_list]
         self._region_name_list = [(i.get('region_name', 'NA'))
-            for i in role_list]
+                                  for i in role_list]
         self._uid_list = [(i.get('game_uid', 'NA')) for i in role_list]
 
         log.info('准备获取签到信息...')
@@ -198,11 +199,11 @@ class Sign(Base):
 
 
 if __name__ == '__main__':
-    log.info(f'🌀原神签到小助手 {version()}')   
+    log.info(f'🌀原神签到小助手 {version()}')
     log.info('若签到失败, 请尝试更新!')
     log.info('任务开始')
     notify = Notify()
-    msg_list = []
+    msg_list = list()
     ret = success_num = fail_num = 0
     """miHoYo BBS COOKIE
     :param COOKIE: 米游社的COOKIE.多个账号的COOKIE值之间用 # 号隔开,例如: 1#2#3#4
@@ -229,9 +230,11 @@ if __name__ == '__main__':
             log.error(msg)
             ret = -1
         continue
-    notify.send(status=f'成功: {success_num} | 失败: {fail_num}', msg=msg_list)
+    try:
+        notify.send(status=f'成功: {success_num} | 失败: {fail_num}', msg=msg_list)
+    except Exception as error:
+        print(error)
     if ret != 0:
         log.error('异常退出')
         exit(ret)
     log.info('任务结束')
-
