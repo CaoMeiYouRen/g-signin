@@ -2,12 +2,12 @@ name: "Genshin Impact Helper"
 
 on:
   schedule:
-    - cron: "0 22 * * *"  # scheduled at 06:00 (UTC+8) everyday
+    - cron: "0 22 * * *" # scheduled at 06:00 (UTC+8) everyday
   workflow_dispatch:
 
 env:
-  RUN_ENV: 'prod'
-  TZ: 'Asia/Shanghai'
+  RUN_ENV: "prod"
+  TZ: "Asia/Shanghai"
 
 jobs:
   build:
@@ -52,7 +52,7 @@ jobs:
           PUSH_PLUS_USER: ${{ secrets.PUSH_PLUS_USER }}
           PUSH_CONFIG: ${{ secrets.PUSH_CONFIG }}
         run: |
-          python3 -m pip3 install --upgrade pip3
-          pip3 install -r requirements.txt
+          python3 -m pip install --upgrade pip
+          pip install -r requirements.txt
           python3 ./genshin.py
           # echo '${{ secrets.COOKIE }}' | tr '#' '\n' | sed 's/$/&#${{ secrets.SCKEY }}/g' | xargs -I {} sh -c 'echo "{}" | python3 ./genshin.py'
